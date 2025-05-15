@@ -2,6 +2,9 @@ import unittest
 from src.markdown_html import (
     markdown_to_html_node,
 )
+from src.generate import (
+    extract_title,
+)
 
 class TestMarkdownToHTML(unittest.TestCase):
     def test_paragraph(self):
@@ -101,6 +104,9 @@ the **same** even with inline stuff
             html,
             "<div><pre><code>This is text that _should_ remain\nthe **same** even with inline stuff\n</code></pre></div>",
         )
+
+    def test_title(self):
+        self.assertEqual(extract_title("# Hello World"), "Hello World")
 
 if __name__ == "__main__":
     unittest.main()

@@ -49,7 +49,7 @@ def handle_quote_block(block):
     lines = block.split("\n")
     new_lines = []
     for line in lines:
-        new_lines.append(line[2:])
+        new_lines.append(line.lstrip(">").strip())
     text = " ".join(new_lines)
     children = text_to_children(text)
     return ParentNode("blockquote", children)
@@ -79,3 +79,4 @@ def text_to_children(text):
     for text_node in text_nodes:
         children.append(text_node.to_html_node())
     return children
+
